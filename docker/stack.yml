@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+  flylite-si:
+    image: registry.susa.cloud/flylite-si:v0.0.2
+    user: node
+    ports:
+      - 3032:3000
+    networks:
+      - net
+      - traefik-public
+    deploy:
+      labels:
+        traefik.http.routers.flylite-si-https.tls: "true"
+        traefik.http.routers.flylite-si-https.entrypoints: https
+        traefik.http.services.flylite-si.loadbalancer.server.port: "3000"
+        traefik.http.routers.flylite-si-https.tls.certresolver: le
+        traefik.http.routers.flylite-si-https.rule: Host(`flylite.si`)
+        traefik.http.routers.flylite-si-http.rule: Host(`flylite.si`)
+        traefik.constraint-label: traefik-public
+        traefik.http.routers.flylite-si-http.entrypoints: http
+        traefik.docker.network: traefik-public
+        traefik.enable: "true"
+        traefik.http.routers.flylite-si-http.middlewares: https-redirect
+      update_config:
+        delay: 10s
+        failure_action: rollback
+      restart_policy:
+        window: 120s
+        max_attempts: 3
+networks:
+  net:
+    driver: overlay
+  traefik-public:
+    external: true

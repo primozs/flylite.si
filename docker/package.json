@@ -1,0 +1,11 @@
+{
+  "name": "docker-deploy",
+  "version": "0.0.1",
+  "scripts": {
+    "build:prod": "./build.sh",
+    "publish:prod": "./publish.sh",
+    "build:local": "./local.sh",
+    "start:local": "cd .. && docker-compose up",
+    "stop:local": "cd .. && docker-compose down"
+  }
+}

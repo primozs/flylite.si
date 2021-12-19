@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  zobozdravstvo-ogrin-si:
+    image: susa/flylite-si:0.0.1
+    restart: always
+    build:
+      context: ./
+    ports:
+      - "3032:3000"
