@@ -9,7 +9,8 @@
     "build": "next build",
     "export": "next export",
     "start": "NODE_ENV=production next start -p 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "symlink-dir node_modules/cesium/Build/Cesium public/cesium"
   },
   "browserslist": [
     ">0.5%",
@@ -22,13 +23,18 @@
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "@moxy/next-pre-compression": "^3.0.1",
+    "cesium": "^1.88.0",
     "next": "12.0.7",
     "next-google-fonts": "^2.2.0",
     "next-pwa": "^5.4.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sharp": "^0.29.3"
+    "resium": "^1.14.3",
+    "sharp": "^0.29.3",
+    "symlink-dir": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

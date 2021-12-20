@@ -1,5 +1,6 @@
 const withPreCompression = require('@moxy/next-pre-compression');
 const withPWA = require('next-pwa');
+const webpack = require('webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -54,5 +55,13 @@ module.exports = withPWA(
     },
     reactStrictMode: false,
     poweredByHeader: false,
+    webpack: (config) => {
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          CESIUM_BASE_URL: JSON.stringify('cesium'),
+        })
+      );
+      return config;
+    },
   })
 );
