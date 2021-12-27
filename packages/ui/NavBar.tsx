@@ -1,16 +1,28 @@
 import tw from 'twin.macro';
 import { Disclosure } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import Logo from 'ui/Logo';
+import Link from 'next/link';
+import NavBarLink from 'ui/NavBarLink';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const NavBar = ({ children }: Props) => {
+const NavBar = () => {
   return (
     <Disclosure as="nav" css={tw`bg-white border-b border-gray-200`}>
-      <div css={tw`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-red-400`}>
-        <div css={tw`flex justify-between h-16 bg-blue-500`}>{children}</div>
+      <div css={tw`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}>
+        <div css={tw`flex justify-between h-14 bg-white`}>
+          <div tw="flex">
+            <div tw="flex-shrink-0 flex items-center">
+              <Logo />
+            </div>
+
+            <Link href="/gallery">
+              <NavBarLink>Gallery</NavBarLink>
+            </Link>
+
+            <Link href="/view">
+              <NavBarLink>3D View</NavBarLink>
+            </Link>
+          </div>
+        </div>
       </div>
     </Disclosure>
   );
