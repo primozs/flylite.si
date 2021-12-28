@@ -1,7 +1,7 @@
 {
   "name": "flylite.si",
   "description": "web site",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Primoz Susa <primoz.susa@pm.me>",
   "private": true,
   "scripts": {
@@ -10,7 +10,12 @@
     "export": "next export",
     "start": "NODE_ENV=production next start -p 3000",
     "lint": "next lint",
-    "postinstall": "symlink-dir node_modules/cesium/Build/Cesium public/cesium"
+    "cesium:symlink": "symlink-dir node_modules/cesium/Build/Cesium public/cesium",
+    "postinstall": "yarn cesium:symlink",
+    "version:minor": "yarn yarn_version --minor",
+    "version:major": "yarn yarn_version --major",
+    "version:patch": "yarn yarn_version --patch",
+    "yarn_version": "yarn version --no-git-tag-version"
   },
   "browserslist": [
     ">0.5%",

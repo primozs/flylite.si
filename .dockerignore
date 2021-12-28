@@ -3,3 +3,8 @@ test
 node_modules
 npm-debug.log
 /.next
+/docker
+/material
+/public/cesium
+/public/sw.js
+/public/workbox-*.js

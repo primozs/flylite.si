@@ -21,7 +21,7 @@ const NavBar = () => {
               <NavBarLink>Gallery</NavBarLink>
             </Link>
 
-            <Link href="/view">
+            <Link href="/view" locale="en">
               <NavBarLink>3D View</NavBarLink>
             </Link>
           </div>

@@ -8,14 +8,17 @@ services:
     networks:
       - net
       - traefik-public
+    configs:
+      - source: flylite.si.env.local
+        target: /app/.env.local
     deploy:
       labels:
         traefik.http.routers.flylite-si-https.tls: "true"
         traefik.http.routers.flylite-si-https.entrypoints: https
         traefik.http.services.flylite-si.loadbalancer.server.port: "3000"
         traefik.http.routers.flylite-si-https.tls.certresolver: le
-        traefik.http.routers.flylite-si-https.rule: Host(`flylite.si`)
-        traefik.http.routers.flylite-si-http.rule: Host(`flylite.si`)
+        traefik.http.routers.flylite-si-https.rule: Host(`flylite.si`) || Host(`www.flylite.si`)
+        traefik.http.routers.flylite-si-http.rule: Host(`flylite.si`) || Host(`www.flylite.si`)
         traefik.constraint-label: traefik-public
         traefik.http.routers.flylite-si-http.entrypoints: http
         traefik.docker.network: traefik-public
@@ -31,4 +34,8 @@ networks:
   net:
     driver: overlay
   traefik-public:
+    external: true
+
+configs:
+  flylite.si.env.local:
     external: true
