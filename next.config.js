@@ -55,6 +55,11 @@ module.exports = withPWA(
     },
     reactStrictMode: false,
     poweredByHeader: false,
+    i18n: {
+      localeDetection: false,
+      defaultLocale: 'en',
+      locales: ['en', 'sl'],
+    },
     webpack: (config) => {
       config.plugins.push(
         new webpack.DefinePlugin({

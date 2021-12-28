@@ -7,7 +7,7 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import FullScreenGallery from 'gallery/FullScreenGallery';
 import { getPage, stringToHtml } from '../lib/getContent';
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 type Props = {
   frontMatter: { content: string; data: any };
@@ -50,8 +50,11 @@ const Home: NextPage<Props> = ({ frontMatter }) => {
         images={images}
         ref={mainViewportRef}
       />
-      <div tw="flex">
-        <div dangerouslySetInnerHTML={{ __html: frontMatter.content }} />
+      <div tw="relative p-4 sm:p-6 lg:p-8">
+        <div
+          tw="text-lg max-w-prose mx-auto mt-6 prose sm:prose lg:prose-lg xl:prose-xl prose-blue  text-gray-600"
+          dangerouslySetInnerHTML={{ __html: frontMatter.content }}
+        />
       </div>
     </>
   );
@@ -60,7 +63,9 @@ const Home: NextPage<Props> = ({ frontMatter }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const page = await getPage('index');
+  const locale = ctx.locale;
+
+  const page = await getPage(`index-${locale}`);
   const { content, data } = page;
 
   const contentJsx = await stringToHtml(content, true);

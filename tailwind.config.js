@@ -61,5 +61,5 @@ module.exports = {
     fontFamily: false,
     float: false,
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
